@@ -29,7 +29,7 @@ class RegisterUser extends React.Component {
 
         const { firstName, lastName, password, email, phoneNumber, SAID } = this.state;
 
-        const response = await fetch('/netlify/functions/register', {
+        const response = await fetch('/.netlify/functions/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
