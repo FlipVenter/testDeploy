@@ -1,4 +1,4 @@
-// filepath: d:\coding challenges\testDeploy\netlify\functions\register.js
+// filepath: d:\coding challenges\testDeploy\netlify\functions\login.js
 const { MongoClient } = require("mongodb");
 
 const uri = "mongodb+srv://u23692619:Jaco%26u%24%401@flip.rt4rm.mongodb.net/?retryWrites=true&w=majority";
@@ -14,44 +14,33 @@ exports.handler = async (event, context) => {
 
     try {
         console.log('Received event:', event.body);
-        const { firstName, lastName, password, email, phoneNumber, SAID } = JSON.parse(event.body);
+        const { email, password } = JSON.parse(event.body);
 
-        if (!firstName || !lastName || !password || !email || !phoneNumber || !SAID) {
+        if (!email || !password) {
             return {
                 statusCode: 400,
                 body: JSON.stringify({ message: 'All fields are required' }),
             };
         }
 
-        const newUser = {
-            firstName,
-            lastName,
-            password,
-            email,
-            phoneNumber,
-            SAID
-        };
-
         await client.connect();
         const db = client.db('OomGawie');
         const users = db.collection('clientInfo');
 
-        const existingUser = await users.findOne({ email });
-        if (existingUser) {
+        const user = await users.findOne({ email, password });
+        if (!user) {
             return {
-                statusCode: 400,
-                body: JSON.stringify({ message: 'User already exists' }),
+                statusCode: 401,
+                body: JSON.stringify({ message: 'Invalid credentials' }),
             };
         }
 
-        const result = await users.insertOne(newUser);
-
         return {
-            statusCode: 201,
-            body: JSON.stringify({ message: 'User registered successfully', userId: result.insertedId }),
+            statusCode: 200,
+            body: JSON.stringify({ message: 'Login successful' }),
         };
     } catch (error) {
-        console.error('Error registering user:', error);
+        console.error('Error during login:', error);
         return {
             statusCode: 500,
             body: JSON.stringify({ message: 'Internal server error' }),
