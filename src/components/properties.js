@@ -27,6 +27,9 @@ const Property = ({
         <option value="Rental Property" className="p-4">
           Investment Property
         </option>
+        <option value="other Property" className="p-4">
+          Other Property
+        </option>
       </select>
       <input
         type="text"

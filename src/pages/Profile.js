@@ -122,7 +122,7 @@ class Profile extends React.Component {
       console.log(email);
   
       // Make a GET request to retrieve user data
-      const response = await fetch(`/.netlify/functions/profile${email}`, {
+      const response = await fetch(`/.netlify/functions/profile?email=${email}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -1108,7 +1108,7 @@ class Profile extends React.Component {
                 className="bg-myBlue-300 w-[85vw] p-2 text-white rounded-lg cursor-pointer flex flex-row justify-between hover:bg-myYellow-100"
                 onClick={this.toggleLifestyleExpenses}
               >
-                Lifestyle Expenses
+                Lifestyle Expenses - Objective Monthly
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className={`size-6 ${showLifestyleExpenses ? "rotate-180" : ""}`}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                 </svg>

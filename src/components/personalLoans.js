@@ -39,11 +39,9 @@ const PersonalLoan = ({
         <option value="" className="p-4" aria-disabled>
           Choose...
         </option>
-        <option value="Benificiary" className="p-4">
-          Bequethed to your spouse
+        <option value="settledFromEstate" className="p-4">
+          To Be Settled From Estate
         </option>
-        <option value="BequethedTo">Bequethed to somebody else</option>
-        <option value="BequethedTo">Form part of residue of Estate</option>
       </select>
       <button
         className="bg-myBlue-300 p-2 aspect-square rounded-lg max-w-[3vw] box-border hover:bg-myYellow-100"

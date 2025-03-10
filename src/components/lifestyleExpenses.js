@@ -21,11 +21,11 @@ const LifestyleExpense = ({
         <option value="" className="p-4" aria-disabled>
           Choose...
         </option>
-        <option value="Groceries" className="p-4">
-          Groceries
+        <option value="family_provisions" className="p-4">
+          Family Provisions
         </option>
-        <option value="TuitionFees">Tuition Fees</option>
-        <option value="Other">Other</option>
+        <option value="TuitionFees">Disability Provisions</option>
+        <option value="Other">Retirement Provisions</option>
       </select>
       <input
         type="nunmber"
