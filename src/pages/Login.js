@@ -40,6 +40,7 @@ class Login extends React.Component {
             Cookies.set('LoggedIn', true, { expires: 1 });
             this.props.navigate('/Profile'); 
         } else {
+            console.log(response);
             alert('Login failed. Please check your email and password.');
         }
     }
