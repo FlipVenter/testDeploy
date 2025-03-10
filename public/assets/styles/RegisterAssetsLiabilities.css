@@ -1,0 +1,143 @@
+.registerAssetsBody {
+    margin: 0;
+    padding: 0;
+    height: 100vh; 
+    width: 100vw; 
+    background-color: #124F96   ; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Add relative positioning */
+    z-index: 0; /* Ensure it is below the form container */
+}   
+
+.registerAssetsBody::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('../../assets/images/manSigningDocuments.jpg'); /* Corrected path to background image */
+    background-size: cover; /* Cover the entire container */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    opacity: 0.2; 
+    z-index: -1; /* Place the pseudo-element behind the content */
+}
+
+.registerAssetsFormContainer {
+    width: 70vw;
+    height: 80vh;
+    padding: 5px; 
+    margin-top: 80px; 
+    gap: 10px; 
+    z-index: 1; /* Ensure it is above the background image */
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: auto; 
+    /* Hide scrollbar for WebKit-based browsers */
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for Firefox */
+    scrollbar-width: none;
+}
+
+.categoryContainer {
+    background-color: white; 
+    width: 100%; 
+    height: auto; 
+    border-radius: 5px;
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+
+    box-shadow: 0px 0px 5px 0px #000000;
+}
+
+.categoryTitle {
+    background-color: #124F96; 
+    width: 95%; 
+    height: 5vh; 
+    border-radius: 5px; 
+    padding-left: 5%; 
+    color: white; 
+    font-weight: bold;
+    display: flex; 
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.marginLeft {
+    margin-left: 10px; 
+}
+
+select {
+    border-radius: 5px; 
+    border: 1px solid #124F96; 
+    padding: 7px; 
+    margin: 0px; 
+    width: 10vw; 
+}
+
+input {
+    border-radius: 5px; 
+    border: 1px solid #124F96; 
+    padding: 5px; 
+    margin: 0px; 
+}
+
+input[type="text"] {
+    width:  15vw; 
+}
+
+input[type="number"] {
+    width: 7vw; 
+}
+
+input:focus {
+    outline: none; 
+    border: 1px solid #FCB900; 
+}
+
+.buttonsContainer {
+    background-color: white; 
+    width: 100%; 
+    height: auto; 
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5px; 
+    padding-right: 5px; 
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.addButtonContainer {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.addButton {
+    border-radius: 5px; 
+    border: 1px solid #124F96; 
+    padding: 2px; 
+    margin: 0px; 
+    margin-top: 4vh;
+}
+

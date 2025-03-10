@@ -1,0 +1,38 @@
+.header {
+    background-color: white;
+    padding: 10px 0;
+    padding-left: 30vh; 
+    padding-right: 10vh;
+    position: fixed; 
+    width: 100vw; 
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Corrected box shadow */
+    z-index: 1000; /* Corrected z-index */
+}
+
+.headerLogo {
+    height: 60px; /* Adjust the height as needed */
+    width: auto; 
+    margin-right: 20px; /* Adjust the margin as needed */
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-item a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,93 @@
+/* all global styling for the project */
+/* ignore warnings, vscode just doesnt know what the imports are  */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Merriweather Sans', sans-serif;
+    background-color: white;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+.button {
+    width: 10vw;
+    height: 5vh;
+    border-radius: 5px; 
+    border: none; 
+    padding: 5px; 
+    margin: 0px; 
+    background-color: #124F96; 
+    color: white; 
+    font-weight: bold; 
+}
+
+.button:hover {
+    background-color: #FFD329; 
+    border: 1px solid #124F96;
+}
+
+.button2 {
+    width: 10vw;
+    height: 5vh;
+    border-radius: 5px; 
+    border: none; 
+    padding: 5px; 
+    margin: 0px; 
+    background-color: #FFD329; 
+    color: #124F96;
+    font-weight: bold; 
+}
+
+.button2:hover {
+    background-color: #124F96; 
+    border: 1px solid #FFD329;
+    color: white;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #d8d8d8;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #949494;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #949494;
+}
+
+/* accordion */
+.rotate-180 {
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+  }
