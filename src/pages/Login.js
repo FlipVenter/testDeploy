@@ -25,7 +25,7 @@ class Login extends React.Component {
 
         const { email, password } = this.state;
 
-        const response = await fetch('/.netlify/functions/register', {
+        const response = await fetch('/.netlify/functions/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
