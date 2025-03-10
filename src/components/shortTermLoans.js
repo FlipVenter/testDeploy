@@ -21,10 +21,10 @@ const ShortTermLoan = ({
         <option value="" className="p-4" aria-disabled>
           Choose...
         </option>
-        <option value="Personal" className="p-4">
+        <option value="overdraft" className="p-4">
           Overdraft
         </option>
-        <option value="Personal" className="p-4">
+        <option value="credit" className="p-4">
           CreditCard
         </option>
       </select>
