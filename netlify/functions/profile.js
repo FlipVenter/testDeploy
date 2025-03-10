@@ -15,6 +15,13 @@ exports.handler = async (event, context) => {
     try {
         const email = event.queryStringParameters.email;
 
+        if (!email) {
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ message: 'Email is required' }),
+            };
+        }
+
         await client.connect();
         const db = client.db('OomGawie');
         const users = db.collection('clientInfo');
