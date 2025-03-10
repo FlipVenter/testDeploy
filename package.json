@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel server.js -d dist",
+    "build": "webpack --mode production",
     "start": "npm run build && node dist/server.js"
   },
   "author": "",
