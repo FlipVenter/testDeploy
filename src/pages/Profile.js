@@ -122,7 +122,7 @@ class Profile extends React.Component {
       console.log(email);
   
       // Make a GET request to retrieve user data
-      const response = await fetch(`/api/profile/${email}`, {
+      const response = await fetch(`/.netlify/functions/profile${email}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -211,7 +211,7 @@ class Profile extends React.Component {
   
     try {
       // Use the root '/api/updateUserInfo' to update the user's information
-      const response = await fetch('/api/updateUserInfo', {
+      const response = await fetch('/.netlify/functions/updateUserInfo', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
