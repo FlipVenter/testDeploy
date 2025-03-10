@@ -758,20 +758,20 @@ class Profile extends React.Component {
           style={{ backgroundImage: `url(${backgroundImage})` }}
         ></div>
         <div className="relative bg-white w-[87vw] h-[7vh] min-h-[7vh] flex flex-row justify-center items-center rounded-lg shadow-lg overflow-hidden box-border p-1">
-          <div className=" flex flex-row justify-start items-center w-[50%] h-full rounded-l-lg bg-gray-300">
+          <div className=" flex flex-row justify-start items-center w-[50%] h-full rounded-l-lg ">
             <p>
               {this.state.firstName} {this.state.lastName}
             </p>
           </div>
-          <div className=" flex flex-row justify-center items-center w-[50%] h-full rounded-l-lg bg-gray-300">
-            <label>Assets: </label>
-            <p className="bg-white rounded-lg h-[90%]">{this.state.totalAssets}</p>
+          <div className=" flex flex-row justify-center items-center w-[50%] h-full rounded-l-lg ">
+            <label>Assets:</label>
+            <p>{this.state.totalAssets}</p>
           </div>
-          <div className=" flex flex-row justify-center items-center w-[50%] h-full rounded-l-lg bg-gray-300">
+          <div className=" flex flex-row justify-center items-center w-[50%] h-full rounded-l-lg ">
             <label>Liabilities: </label>
             <p>{this.state.totalLiabilities}</p>
           </div>
-          <div className=" flex flex-row justify-center items-center w-[50%] h-full rounded-l-lg bg-gray-300">
+          <div className=" flex flex-row justify-center items-center w-[50%] h-full rounded-l-lg ">
             <label>Net Worth: </label>
             <p>{this.state.totalAssets - this.state.totalLiabilities}</p>
           </div>
