@@ -91,8 +91,9 @@ class Login extends React.Component {
             //         </div>
             //     </div>
             // </div>
-            <div className="bg-myBlue-300 h-[90vh] w-screen flex flex-col justify-center items-center overflow-hidden">
-                    <form className="bg-white w-screen h-[85%] mx-2" onSubmit={this.handleSubmit}>
+            <div className="relative bg-myBlue-300 h-[90vh] w-screen flex flex-col justify-start items-center overflow-hidden box-border pt-8">
+                    <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+                    <form className="relative bg-white w-screen h-[80vh] mx-2" onSubmit={this.handleSubmit}>
                         <div className="w-full h-[15%] flex flex-start items-center justify-center text-4xl">
                             Login
                         </div>
