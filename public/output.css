@@ -681,6 +681,15 @@ video {
   min-height: 9vh;
 }
 
+.min-h-fit{
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+}
+
+.min-h-9{
+  min-height: 2.25rem;
+}
+
 .w-\[12vw\]{
   width: 12vw;
 }
@@ -719,6 +728,11 @@ video {
 
 .min-w-\[350px\]{
   min-width: 350px;
+}
+
+.min-w-fit{
+  min-width: -moz-fit-content;
+  min-width: fit-content;
 }
 
 .max-w-\[3vw\]{
