@@ -592,6 +592,10 @@ video {
   display: flex;
 }
 
+.hidden{
+  display: none;
+}
+
 .aspect-square{
   aspect-ratio: 1 / 1;
 }
@@ -667,6 +671,10 @@ video {
 
 .h-full{
   height: 100%;
+}
+
+.h-\[full\]{
+  height: full;
 }
 
 .min-h-9{
@@ -1150,8 +1158,16 @@ body {
 }
 
 @media (min-width: 768px){
+  .md\:flex{
+    display: flex;
+  }
+
   .md\:hidden{
     display: none;
+  }
+
+  .md\:p-8{
+    padding: 2rem;
   }
 }
 
