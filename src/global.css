@@ -15,14 +15,13 @@ body {
     width: 100vw;
     height: 100vh;
 
-    overflow: hidden;
+    overflow-x:hidden; 
+    overflow-y: hidden;
 }
 
 
 
 .button {
-    width: 10vw;
-    height: 5vh;
     border-radius: 5px; 
     border: none; 
     padding: 5px; 
