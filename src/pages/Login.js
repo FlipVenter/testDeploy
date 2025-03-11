@@ -48,7 +48,7 @@ class Login extends React.Component {
     render() {
         return (
             <div className="flex flex-col justify-start items-center box-border h-[90vh] w-full">
-                <div className="hidden relative sm:flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-full h-[80vh]">
+                <div className="relative hidden sm:flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-full h-[80vh]">
                     <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
                     <div className="relative sm:text-5xl flex flex-col justify-start items-center box-border lg:text-7xl xl:text-8xl text-white w-[50vw] h-5/6 md:flex ">
                             Estate Liquidity Calculator
@@ -81,7 +81,6 @@ class Login extends React.Component {
                                             required
                                         />
                                 </div>
-
                                 <div className="flex justify-center items-center  w-full h-[10%]">
                                     <NavLink to="/RegisterUser"className="hover:text-myYellow-100 hover:bg-none">Don't have an account? </NavLink>
                                 </div>
@@ -93,44 +92,44 @@ class Login extends React.Component {
                     </div>
                 </div>
                 {/* mobile view */}
-                <div className="sm:hidden relative flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-screen h-dvh flow-hidden">
+                <div className="sm:hidden relative flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-screen h-[80dvh] flow-hidden">
                     <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
                     <form className="rounded-lg relative bg-white h-[80%] w-[95%] flex flex-col justify-start items-center py-5 box-border" onSubmit={this.handleSubmit}>
-                                <div className=" rounded-md w-full h-[15%] flex flex-start items-center justify-center text-3xl">
-                                    Login
-                                </div>
+                            <div className=" rounded-md w-full h-[15%] flex flex-start items-center justify-center text-3xl">
+                                Login
+                            </div>
 
-                                <div className=" w-full h-[65%] flex flex-col justify-center items-center gap-10 p-3">
-                                        <input
-                                            name="email"
-                                            value={this.state.email}
-                                            onChange={this.handleChange}
-                                            placeholder="Email"
-                                            autoComplete="on"
-                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2  focus:outline-myBlue-100 invalid:outline-red-600"
-                                            required
-                                        />
+                            <div className=" w-full h-[65%] flex flex-col justify-center items-center gap-10 p-3">
+                                    <input
+                                        name="email"
+                                        value={this.state.email}
+                                        onChange={this.handleChange}
+                                        placeholder="Email"
+                                        autoComplete="on"
+                                        className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2  focus:outline-myBlue-100 invalid:outline-red-600"
+                                        required
+                                    />
 
-                                        <input
-                                            name="password"
-                                            value={this.state.password}
-                                            onChange={this.handleChange}
-                                            placeholder="Password"
-                                            type="password"
-                                            autoComplete="on"
-                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2 focus:outline-myBlue-100 invalid:outline-red-500"
-                                            required
-                                        />
-                                </div>
+                                    <input
+                                        name="password"
+                                        value={this.state.password}
+                                        onChange={this.handleChange}
+                                        placeholder="Password"
+                                        type="password"
+                                        autoComplete="on"
+                                        className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2 focus:outline-myBlue-100 invalid:outline-red-500"
+                                        required
+                                    />
+                            </div>
 
-                                <div className="flex justify-center items-center  w-full h-[10%]">
-                                    <NavLink to="/RegisterUser"className="hover:text-myYellow-100 hover:bg-none">Don't have an account? </NavLink>
-                                </div>
+                            <div className="flex justify-center items-center  w-full h-[10%]">
+                                <NavLink to="/RegisterUser"className="hover:text-myYellow-100 hover:bg-none">Don't have an account? </NavLink>
+                            </div>
 
-                                <div className=" w-full h-[20%] flex flex-col justify-center items-center">
-                                    <button type="submit" className="bg-myBlue-300 hover:bg-myYellow-100 w-[40%] h-fit text-white rounded-lg py-2 px-3">Login</button>
-                                </div>
-                        </form>
+                            <div className=" w-full h-[20%] flex flex-col justify-center items-center">
+                                <button type="submit" className="bg-myBlue-300 hover:bg-myYellow-100 w-[40%] h-fit text-white rounded-lg py-2 px-3">Login</button>
+                            </div>
+                    </form>
                 </div>
             </div>
         )
