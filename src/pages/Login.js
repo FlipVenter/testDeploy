@@ -93,7 +93,7 @@ class Login extends React.Component {
                     </div>
                 </div>
                 {/* mobile view */}
-                <div className="sm:hidden relative flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-screen h-[90vh] overflow-hidden">
+                <div className="sm:hidden relative flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-screen h-full flow-hidden">
                     <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
                     <form className="rounded-lg relative bg-white h-[80%] w-[95%] flex flex-col justify-start items-center py-5 box-border" onSubmit={this.handleSubmit}>
                                 <div className=" rounded-md w-full h-[15%] flex flex-start items-center justify-center text-3xl">
