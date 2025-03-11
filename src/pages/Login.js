@@ -47,9 +47,8 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="w-full h-full">
-                <div className="hidden sm:flex flex-col justify-start items-center box-border h-[90vh] w-full">
-                    <div className="relative flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-full h-[80vh]">
+                <div className="sm:flex flex-col justify-start items-center box-border h-[90vh] w-full">
+                    <div className="hidden relative sm:flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-full h-[80vh]">
                         <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
                         <div className="relative flex flex-col justify-start items-center box-border lg:text-7xl xl:text-8xl text-white w-[50vw] h-5/6 md:flex ">
                                 Estate Liquidity Calculator
@@ -91,46 +90,45 @@ class Login extends React.Component {
                             </form>
                         </div>
                     </div>
+                    <div className="relative bg-myBlue-300 h-[90vh] w-screen flex flex-col justify-start items-center overflow-hidden box-border sm:hidden">
+                            <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+                            <form className="relative bg-white w-screen h-[70vh] mx-3 mt-5" onSubmit={this.handleSubmit}>
+                                <div className="w-full h-[15%] flex flex-start items-center justify-center text-4xl">
+                                    Login
+                                </div>
+
+                                <div className="bg- w-full h-[65%] flex flex-col justify-center items-center gap-10 p-3">
+                                        <input
+                                            name="email"
+                                            value={this.state.email}
+                                            onChange={this.handleChange}
+                                            placeholder="Email"
+                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2  focus:outline-myBlue-100 invalid:outline-red-600"
+                                            required
+                                        />
+
+                                        <input
+                                            name="password"
+                                            value={this.state.password}
+                                            onChange={this.handleChange}
+                                            placeholder="Password"
+                                            type="password"
+                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2 focus:outline-myBlue-100 invalid:outline-red-500"
+                                            required
+                                        />
+                                </div>
+
+                                <div className="flex justify-center items-center  w-full h-[10%]">
+                                    <NavLink to="/RegisterUser"className="hover:text-myYellow-100 hover:bg-none">Don't have an account? </NavLink>
+                                </div>
+
+                                <div className=" w-full h-[10%] flex flex-col justify-center items-center">
+                                    <button type="submit" className="button">Login</button>
+                                </div>
+                        </form>
+                    </div>
                 </div>
 
-                <div className="relative bg-myBlue-300 h-[90vh] w-screen flex flex-col justify-start items-center overflow-hidden box-border sm:hidden">
-                        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
-                        <form className="relative bg-white w-screen h-[70vh] mx-3 mt-5" onSubmit={this.handleSubmit}>
-                            <div className="w-full h-[15%] flex flex-start items-center justify-center text-4xl">
-                                Login
-                            </div>
-
-                            <div className="bg- w-full h-[65%] flex flex-col justify-center items-center gap-10 p-3">
-                                    <input
-                                        name="email"
-                                        value={this.state.email}
-                                        onChange={this.handleChange}
-                                        placeholder="Email"
-                                        className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2  focus:outline-myBlue-100 invalid:outline-red-600"
-                                        required
-                                    />
-
-                                    <input
-                                        name="password"
-                                        value={this.state.password}
-                                        onChange={this.handleChange}
-                                        placeholder="Password"
-                                        type="password"
-                                        className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2 focus:outline-myBlue-100 invalid:outline-red-500"
-                                        required
-                                    />
-                            </div>
-
-                            <div className="flex justify-center items-center  w-full h-[10%]">
-                                <NavLink to="/RegisterUser"className="hover:text-myYellow-100 hover:bg-none">Don't have an account? </NavLink>
-                            </div>
-
-                            <div className=" w-full h-[10%] flex flex-col justify-center items-center">
-                                <button type="submit" className="button">Login</button>
-                            </div>
-                    </form>
-                </div>
-            </div>
         )
     }
 }
