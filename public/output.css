@@ -1091,6 +1091,10 @@ body {
 }
 
 @media (min-width: 640px){
+  .sm\:h-full{
+    height: 100%;
+  }
+
   .sm\:w-\[35vw\]{
     width: 35vw;
   }
@@ -1103,8 +1107,16 @@ body {
     width: 40%;
   }
 
+  .sm\:overflow-hidden{
+    overflow: hidden;
+  }
+
   .sm\:overflow-y-auto{
     overflow-y: auto;
+  }
+
+  .sm\:overflow-x-hidden{
+    overflow-x: hidden;
   }
 
   .sm\:overflow-y-scroll{
@@ -1129,6 +1141,11 @@ body {
   .sm\:text-xs{
     font-size: 0.75rem;
     line-height: 1rem;
+  }
+
+  .sm\:text-8xl{
+    font-size: 6rem;
+    line-height: 1;
   }
 }
 
