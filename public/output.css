@@ -1150,6 +1150,10 @@ body {
     display: flex;
   }
 
+  .xl\:h-\[80vh\]{
+    height: 80vh;
+  }
+
   .xl\:w-\[35vw\]{
     width: 35vw;
   }
