@@ -92,8 +92,8 @@ class Login extends React.Component {
             //     </div>
             // </div>
             <div className="bg-myBlue-300 h-[90vh] w-screen flex flex-col justify-center items-center overflow-hidden">
-                    <form className="bg-white w-screen mx-2" onSubmit={this.handleSubmit}>
-                        <div className=" rounded-md w-full h-[15%] flex flex-start items-center justify-center text-4xl">
+                    <form className="bg-white w-screen h-[85%] mx-2" onSubmit={this.handleSubmit}>
+                        <div className="w-full h-[15%] flex flex-start items-center justify-center text-4xl">
                             Login
                         </div>
 
@@ -122,7 +122,7 @@ class Login extends React.Component {
                             <NavLink to="/RegisterUser"className="hover:text-myYellow-100 hover:bg-none">Don't have an account? </NavLink>
                         </div>
 
-                        <div className=" w-full h-[20%] flex flex-col justify-center items-center">
+                        <div className=" w-full h-[10%] flex flex-col justify-center items-center">
                             <button type="submit" className="button">Login</button>
                         </div>
                 </form>
