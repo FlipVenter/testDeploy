@@ -1073,6 +1073,23 @@ body {
   outline-color: #34a4fc;
 }
 
+@media (min-width: 475px){
+  .xs\:text-xs{
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
+
+  .xs\:text-xl{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .xs\:text-5xl{
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
 @media (min-width: 640px){
   .sm\:w-\[35vw\]{
     width: 35vw;
@@ -1080,6 +1097,10 @@ body {
 
   .sm\:w-screen{
     width: 100vw;
+  }
+
+  .sm\:w-\[40\%\]{
+    width: 40%;
   }
 
   .sm\:overflow-y-auto{
@@ -1099,6 +1120,11 @@ body {
   .sm\:text-5xl{
     font-size: 3rem;
     line-height: 1;
+  }
+
+  .sm\:text-xs{
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 }
 

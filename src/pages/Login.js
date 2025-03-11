@@ -75,17 +75,17 @@ class Login extends React.Component {
                                             onChange={this.handleChange}
                                             placeholder="Password"
                                             type="password"
-                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2 focus:outline-myBlue-100 invalid:outline-red-500 min-h-9 sm:text-lg"
+                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2 focus:outline-myBlue-100 invalid:outline-red-500 min-h-9 sm:text-5xl box-border"
                                             required
                                         />
                                 </div>
 
-                                <div className="flex justify-center items-center  w-full h-[10%]">
-                                    <NavLink to="/RegisterUser"className="hover:text-myYellow-100 hover:bg-none">Don't have an account? </NavLink>
+                                <div className="flex justify-center items-center  w-full h-[10%] box-border">
+                                    <NavLink to="/RegisterUser"className="hover:text-myYellow-100 hover:bg-none xs:text-5xl">Don't have an account? </NavLink>
                                 </div>
 
                                 <div className=" w-full h-[20%] flex flex-col justify-center items-center">
-                                    <button type="submit" className="button min-w-fit min-h-fit sm:text-lg sm:w-screen">Login</button>
+                                    <button type="submit" className="button min-w-fit min-h-fit sm:w-[40%] sm:text-5xl">Login</button>
                                 </div>
                         </form>
                     </div>
