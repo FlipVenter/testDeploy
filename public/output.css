@@ -1086,6 +1086,10 @@ body {
     width: 100vw;
   }
 
+  .sm\:overflow-y-auto{
+    overflow-y: auto;
+  }
+
   .sm\:overflow-y-scroll{
     overflow-y: scroll;
   }

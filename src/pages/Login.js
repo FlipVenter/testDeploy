@@ -47,7 +47,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="flex flex-col justify-start items-center box-border h-[90vh] w-full sm:overflow-y-scroll">
+            <div className="flex flex-col justify-start items-center box-border h-[90vh] w-full sm:overflow-y-auto">
                 <div className="relative flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-full h-[80vh]">
                     <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
                     <div className="relative flex flex-col justify-start items-center box-border lg:text-7xl xl:text-8xl text-white w-[50vw] h-5/6 md:hidden ">
@@ -85,7 +85,7 @@ class Login extends React.Component {
                                 </div>
 
                                 <div className=" w-full h-[20%] flex flex-col justify-center items-center">
-                                    <button type="submit" className="button min-w-fit min-h-fit sm:text-lg">Login</button>
+                                    <button type="submit" className="button min-w-fit min-h-fit sm:text-lg sm:w-screen">Login</button>
                                 </div>
                         </form>
                     </div>
