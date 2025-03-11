@@ -8,8 +8,8 @@ import Company from "../components/companyOwnership";
 import ShortTermLoan from "../components/shortTermLoans";
 import PersonalLoan from "../components/personalLoans";
 import LifestyleExpense from "../components/lifestyleExpenses";
-import ExcelJS from 'exceljs';
-import { saveAs } from 'file-saver';
+import ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
 //import styles
 import backgroundImage from "./../../public/assets/images/manSigningDocuments.jpg"; // Import the image
 import plus from "./../../public/assets/images/plus.svg"; // Import the icon
@@ -112,32 +112,35 @@ class Profile extends React.Component {
 
   componentDidMount() {
     this.checkLoginStatus();
-    this.fetchUserData(); 
+    this.fetchUserData();
   }
-  
+
   fetchUserData = async () => {
     try {
       // Get the email from cookies
       let email = Cookies.get("email");
       console.log(email);
-  
+
       // Make a GET request to retrieve user data
-      const response = await fetch(`/.netlify/functions/profile?email=${email}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        `/.netlify/functions/profile?email=${email}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      });
-      console.log(response); 
+      );
+      console.log(response);
       // Check if the response is successful
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
-  
+
       // Parse the response data
       const data = await response.json();
-      console.log('User data retrieved:', data);
-  
+      console.log("User data retrieved:", data);
+
       // Calculate total assets and total liabilities
       const calculateTotal = (items, key) => {
         return items.reduce((total, item) => {
@@ -145,32 +148,39 @@ class Profile extends React.Component {
           return total + value;
         }, 0);
       };
-  
-      const totalAssets = calculateTotal(data.primaryResidence || [], 'assetValue') +
-                          calculateTotal(data.motorVehicles || [], 'assetValue') +
-                          calculateTotal(data.properties || [], 'assetValue') +
-                          calculateTotal(data.cashAccounts || [], 'assetValue') +
-                          calculateTotal(data.companies || [], 'assetValue');
-  
-      const totalLiabilities = calculateTotal(data.primaryResidence || [], 'liabilityValue') +
-                               calculateTotal(data.motorVehicles || [], 'liabilityValue') +
-                               calculateTotal(data.properties || [], 'liabilityValue') +
-                               calculateTotal(data.shortTermLoans || [], 'liabilityValue') +
-                               calculateTotal(data.personalLoans || [], 'liabilityValue') +
-                               calculateTotal(data.lifestyleExpenses || [], 'liabilityValue');
-  
+
+      const totalAssets =
+        calculateTotal(data.primaryResidence || [], "assetValue") +
+        calculateTotal(data.motorVehicles || [], "assetValue") +
+        calculateTotal(data.properties || [], "assetValue") +
+        calculateTotal(data.cashAccounts || [], "assetValue") +
+        calculateTotal(data.companies || [], "assetValue");
+
+      const totalLiabilities =
+        calculateTotal(data.primaryResidence || [], "liabilityValue") +
+        calculateTotal(data.motorVehicles || [], "liabilityValue") +
+        calculateTotal(data.properties || [], "liabilityValue") +
+        calculateTotal(data.shortTermLoans || [], "liabilityValue") +
+        calculateTotal(data.personalLoans || [], "liabilityValue") +
+        calculateTotal(data.lifestyleExpenses || [], "liabilityValue");
+
       // Update the state with the retrieved data and calculated totals
       this.setState({
         firstName: data.firstName,
         lastName: data.lastName,
-        primaryResidence: data.primaryResidence && data.primaryResidence.length > 0 ? data.primaryResidence : [{
-          address: "",
-          assetValue: "",
-          liabilityValue: "",
-          bankName: "",
-          householdContentsValue: "",
-          benificiary_BequethedTo: "",
-        }],
+        primaryResidence:
+          data.primaryResidence && data.primaryResidence.length > 0
+            ? data.primaryResidence
+            : [
+                {
+                  address: "",
+                  assetValue: "",
+                  liabilityValue: "",
+                  bankName: "",
+                  householdContentsValue: "",
+                  benificiary_BequethedTo: "",
+                },
+              ],
         motorVehicles: data.motorVehicles || [],
         properties: data.properties || [],
         cashAccounts: data.cashAccounts || [],
@@ -182,8 +192,8 @@ class Profile extends React.Component {
         totalLiabilities,
       });
     } catch (error) {
-      console.error('Error fetching user data:', error);
-      alert('Failed to retrieve user data. Please try again.');
+      console.error("Error fetching user data:", error);
+      alert("Failed to retrieve user data. Please try again.");
     }
   };
 
@@ -204,17 +214,17 @@ class Profile extends React.Component {
   saveChanges = async () => {
     // Log the current state
     console.log("this state:", this.state);
-  
+
     // Get the email from cookies
     let email = Cookies.get("email");
     console.log(email);
-  
+
     try {
       // Use the root '/api/updateUserInfo' to update the user's information
-      const response = await fetch('/.netlify/functions/updateUserInfo', {
-        method: 'PUT',
+      const response = await fetch("/.netlify/functions/updateUserInfo", {
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: email,
@@ -228,16 +238,16 @@ class Profile extends React.Component {
           lifestyleExpenses: this.state.lifestyleExpenses,
         }),
       });
-  
+
       // Check if the response is successful
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error("Network response was not ok");
       }
-  
+
       // Parse the response data
       const data = await response.json();
-      console.log('Success:', data);
-  
+      console.log("Success:", data);
+
       // Recalculate total assets and total liabilities
       const calculateTotal = (items, key) => {
         return items.reduce((total, item) => {
@@ -245,31 +255,33 @@ class Profile extends React.Component {
           return total + value;
         }, 0);
       };
-  
-      const totalAssets = calculateTotal(this.state.primaryResidence || [], 'assetValue') +
-                          calculateTotal(this.state.motorVehicles || [], 'assetValue') +
-                          calculateTotal(this.state.properties || [], 'assetValue') +
-                          calculateTotal(this.state.cashAccounts || [], 'assetValue') +
-                          calculateTotal(this.state.companies || [], 'assetValue');
-  
-      const totalLiabilities = calculateTotal(this.state.primaryResidence || [], 'liabilityValue') +
-                               calculateTotal(this.state.motorVehicles || [], 'liabilityValue') +
-                               calculateTotal(this.state.properties || [], 'liabilityValue') +
-                               calculateTotal(this.state.shortTermLoans || [], 'liabilityValue') +
-                               calculateTotal(this.state.personalLoans || [], 'liabilityValue') +
-                               calculateTotal(this.state.lifestyleExpenses || [], 'liabilityValue');
-  
+
+      const totalAssets =
+        calculateTotal(this.state.primaryResidence || [], "assetValue") +
+        calculateTotal(this.state.motorVehicles || [], "assetValue") +
+        calculateTotal(this.state.properties || [], "assetValue") +
+        calculateTotal(this.state.cashAccounts || [], "assetValue") +
+        calculateTotal(this.state.companies || [], "assetValue");
+
+      const totalLiabilities =
+        calculateTotal(this.state.primaryResidence || [], "liabilityValue") +
+        calculateTotal(this.state.motorVehicles || [], "liabilityValue") +
+        calculateTotal(this.state.properties || [], "liabilityValue") +
+        calculateTotal(this.state.shortTermLoans || [], "liabilityValue") +
+        calculateTotal(this.state.personalLoans || [], "liabilityValue") +
+        calculateTotal(this.state.lifestyleExpenses || [], "liabilityValue");
+
       // Update the state with the recalculated totals
       this.setState({
         totalAssets,
         totalLiabilities,
       });
-  
+
       // Toggle edit mode off
       this.toggleEditMode();
     } catch (error) {
-      console.error('Error:', error);
-      alert('Failed to save changes. Please try again.');
+      console.error("Error:", error);
+      alert("Failed to save changes. Please try again.");
     }
   };
 
@@ -533,166 +545,181 @@ class Profile extends React.Component {
       ],
     }));
   };
-  
 
   handleRemoveLifestyleExpense = (index) => {
     this.setState((prevState) => ({
       lifestyleExpenses: prevState.lifestyleExpenses.filter(
-        (_, i) => i !== index
+        (_, i) => i !== index,
       ),
     }));
   };
-  
+
   export = async () => {
     console.log("Exporting data...");
     const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet('Estate Liquidity Calculation');
-    
+    const worksheet = workbook.addWorksheet("Estate Liquidity Calculation");
+
     // Define columns
     worksheet.columns = [
-      { header: 'Lifestyle Assets', key: 'lifestyleAsset', width: 30 },
-      { header: 'Market Value', key: 'marketValue', width: 30},
-      { header: '', key: 'space', width: 5},
-      { header: 'Liability', key: 'liability', width: 30 },
-      { header: 'Amount Outstanding', key: 'amountOutstanding', width: 30},
+      { header: "Lifestyle Assets", key: "lifestyleAsset", width: 30 },
+      { header: "Market Value", key: "marketValue", width: 30 },
+      { header: "", key: "space", width: 5 },
+      { header: "Liability", key: "liability", width: 30 },
+      { header: "Amount Outstanding", key: "amountOutstanding", width: 30 },
     ];
-    
+
     const addProperty = (items) => {
-      items.forEach(item => {
+      items.forEach((item) => {
         worksheet.addRow({
-          lifestyleAsset: item.address || '',
-          marketValue: item.assetValue || '',
-          liability: item.bankName || '',
-          amountOutstanding: item.liabilityValue || '',
+          lifestyleAsset: item.address || "",
+          marketValue: item.assetValue || "",
+          liability: item.bankName || "",
+          amountOutstanding: item.liabilityValue || "",
         });
       });
       worksheet.addRow({});
     };
-  
+
     const addVehicle = (items) => {
-      items.forEach(item => {
+      items.forEach((item) => {
         worksheet.addRow({
-          lifestyleAsset: item.model || '',
-          marketValue: item.assetValue || '',
-          liability: item.bankName || '',
-          amountOutstanding: item.liabilityValue || '',
+          lifestyleAsset: item.model || "",
+          marketValue: item.assetValue || "",
+          liability: item.bankName || "",
+          amountOutstanding: item.liabilityValue || "",
         });
       });
       worksheet.addRow({});
     };
-  
+
     const addCash = (items) => {
-      items.forEach(item => {
+      items.forEach((item) => {
         worksheet.addRow({
-          lifestyleAsset: item.bankName|| '',
-          marketValue: item.assetValue || '',
+          lifestyleAsset: item.bankName || "",
+          marketValue: item.assetValue || "",
         });
       });
       worksheet.addRow({});
     };
 
     const addCompany = (items) => {
-      items.forEach(item => {
+      items.forEach((item) => {
         worksheet.addRow({
-          lifestyleAsset: item.name || '',
-          marketValue: item.assetValue || '',
-          liability: item.bankName || '',
-          amountOutstanding: item.liabilityValue || '',
+          lifestyleAsset: item.name || "",
+          marketValue: item.assetValue || "",
+          liability: item.bankName || "",
+          amountOutstanding: item.liabilityValue || "",
         });
       });
       worksheet.addRow({});
     };
 
     const addLoan = (items) => {
-      items.forEach(item => {
+      items.forEach((item) => {
         worksheet.addRow({
-          liability: item.bankName || '',
-          amountOutstanding: item.liabilityValue || '',
+          liability: item.bankName || "",
+          amountOutstanding: item.liabilityValue || "",
         });
       });
       worksheet.addRow({});
     };
-    
+
     const addLifeExpenses = (items) => {
-      items.forEach(item => {
+      items.forEach((item) => {
         worksheet.addRow({
-          liability: item.bankName || '',
-          amountOutstanding: item.liabilityValue || '',
+          liability: item.bankName || "",
+          amountOutstanding: item.liabilityValue || "",
         });
       });
       worksheet.addRow({});
-    }
+    };
 
-  
     // Add rows for each category
-    const primaryResidenceRow = worksheet.addRow({ lifestyleAsset: "Primary Residence" });
+    const primaryResidenceRow = worksheet.addRow({
+      lifestyleAsset: "Primary Residence",
+    });
     primaryResidenceRow.font = { bold: true };
 
     addProperty(this.state.primaryResidence);
-  
-    const householdContentRow = worksheet.addRow({ lifestyleAsset: "Household Contents" });
+
+    const householdContentRow = worksheet.addRow({
+      lifestyleAsset: "Household Contents",
+    });
     householdContentRow.font = { bold: true };
     worksheet.addRow({
       lifestyleAsset: this.state.primaryResidence[0].address,
       marketValue: this.state.primaryResidence[0].householdContentsValue,
     });
-  
+
     const vehiclesRow = worksheet.addRow({ lifestyleAsset: "Motor Vehicles" });
     vehiclesRow.font = { bold: true };
 
     addVehicle(this.state.motorVehicles);
-    
+
     //investment category
-    const investmentRow = worksheet.addRow({lifestyleAsset: "Investments", marketValue: " ", space: " ", liability: "Long Term", amountOutstanding: " "}); 
-    investmentRow.font = {bold: true}; 
+    const investmentRow = worksheet.addRow({
+      lifestyleAsset: "Investments",
+      marketValue: " ",
+      space: " ",
+      liability: "Long Term",
+      amountOutstanding: " ",
+    });
+    investmentRow.font = { bold: true };
     investmentRow.eachCell((cell) => {
       cell.border = {
-        top: { style: 'medium' },
-        bottom: { style: 'medium' },
+        top: { style: "medium" },
+        bottom: { style: "medium" },
       };
     });
 
-    const propertiesRow = worksheet.addRow({ lifestyleAsset: "Property", liability: "Mortgage Bond"});
+    const propertiesRow = worksheet.addRow({
+      lifestyleAsset: "Property",
+      liability: "Mortgage Bond",
+    });
     propertiesRow.font = { bold: true };
 
     addProperty(this.state.properties);
-  
+
     const cashRow = worksheet.addRow({ lifestyleAsset: "Cash Accounts" });
     cashRow.font = { bold: true };
 
     addCash(this.state.cashAccounts);
-  
+
     const companiesRow = worksheet.addRow({ lifestyleAsset: "Companies" });
     companiesRow.font = { bold: true };
-  
-    addCompany(this.state.companies,);
-  
-    const shortTermLoansRow = worksheet.addRow({ liability: "Short Term Loans" });
+
+    addCompany(this.state.companies);
+
+    const shortTermLoansRow = worksheet.addRow({
+      liability: "Short Term Loans",
+    });
     shortTermLoansRow.font = { bold: true };
     addLoan(this.state.shortTermLoans);
-  
+
     const personalLoansRow = worksheet.addRow({ liability: "Personal Loans" });
     personalLoansRow.font = { bold: true };
     addLoan(this.state.personalLoans);
-  
-    const lifestyleExpensesRow = worksheet.addRow({ liability: "Lifestyle Expenses" });
+
+    const lifestyleExpensesRow = worksheet.addRow({
+      liability: "Lifestyle Expenses",
+    });
     lifestyleExpensesRow.font = { bold: true };
 
     addLifeExpenses(this.state.lifestyleExpenses);
 
-    worksheet.spliceColumns(1, 0, 1); 
+    worksheet.spliceColumns(1, 0, 1);
     worksheet.spliceRows(1, 0, 1);
-    worksheet.getCell('B1').value = 'Estate Liquidity Calculation';
+    worksheet.getCell("B1").value = "Estate Liquidity Calculation";
     worksheet.spliceRows(1, 0, 1);
 
-    worksheet.getRow(2).font = { bold: true, size: 20};
-    worksheet.getRow(3).font = { bold: true, size: 15};
+    worksheet.getRow(2).font = { bold: true, size: 20 };
+    worksheet.getRow(3).font = { bold: true, size: 15 };
     worksheet.getRow(3).eachCell((cell) => {
       cell.border = {
-        top: { style: 'thick' },
-        left: { style: 'thick' },
-        bottom: { style: 'thick' },
-        right: { style: 'thick' },
+        top: { style: "thick" },
+        left: { style: "thick" },
+        bottom: { style: "thick" },
+        right: { style: "thick" },
       };
     });
 
@@ -700,37 +727,39 @@ class Profile extends React.Component {
     const startRow = 4;
     const endRow = worksheet.lastRow.number;
     const startCol = 2;
-    const endCol = worksheet.columns.length-1;
+    const endCol = worksheet.columns.length - 1;
 
     for (let rowNum = startRow; rowNum <= endRow; rowNum++) {
       const row = worksheet.getRow(rowNum);
       for (let colNum = startCol; colNum <= endCol; colNum++) {
         const cell = row.getCell(colNum);
         if (rowNum === startRow) {
-          cell.border = { ...cell.border, top: { style: 'medium' } };
+          cell.border = { ...cell.border, top: { style: "medium" } };
         }
         if (rowNum === endRow) {
-          cell.border = { ...cell.border, bottom: { style: 'medium' } };
+          cell.border = { ...cell.border, bottom: { style: "medium" } };
         }
         if (colNum === startCol) {
-          cell.border = { ...cell.border, left: { style: 'medium' } };
+          cell.border = { ...cell.border, left: { style: "medium" } };
         }
         if (colNum === endCol) {
-          cell.border = { ...cell.border, right: { style: 'medium' } };
+          cell.border = { ...cell.border, right: { style: "medium" } };
         }
         if (colNum === 4) {
-          cell.border = { ...cell.border,right: { style: 'medium' } };
-          cell.border = { ...cell.border,left: { style: 'medium' } };
+          cell.border = { ...cell.border, right: { style: "medium" } };
+          cell.border = { ...cell.border, left: { style: "medium" } };
         }
       }
     }
-  
+
     // Generate the Excel file
     const buffer = await workbook.xlsx.writeBuffer();
-    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    saveAs(blob, 'Estate_Liquidity_Calculation.xlsx');
+    const blob = new Blob([buffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+    saveAs(blob, "Estate_Liquidity_Calculation.xlsx");
   };
-  
+
   render() {
     const {
       isEditing,
@@ -751,7 +780,7 @@ class Profile extends React.Component {
       showLifestyleExpenses,
     } = this.state;
 
-    return (  
+    return (
       <div className="relative flex flex-col justify-start items-center gap-2 box-border bg-myBlue-300 w-full h-[90vh] p-3">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -817,8 +846,19 @@ class Profile extends React.Component {
                 onClick={this.togglePrimaryResidence}
               >
                 Primary Residence
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className={`size-6 ${showPrimaryResidence ? "rotate-180" : ""}`}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="white"
+                  className={`size-6 ${showPrimaryResidence ? "rotate-180" : ""}`}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
                 </svg>
               </div>
               {showPrimaryResidence && (
@@ -827,7 +867,9 @@ class Profile extends React.Component {
                     type="text"
                     name="address"
                     value={this.state.primaryResidence[0].address}
-                    onChange={(e) => this.handleChange(e, 'primaryResidence', 0)}
+                    onChange={(e) =>
+                      this.handleChange(e, "primaryResidence", 0)
+                    }
                     placeholder="Address"
                     className="text-black rounded-lg shadow-inner shadow-gray-400 p-2 w-[12vw] h-[5vh] box-border"
                     disabled={!isEditing}
@@ -836,7 +878,9 @@ class Profile extends React.Component {
                     type="number"
                     name="assetValue"
                     value={this.state.primaryResidence[0].assetValue}
-                    onChange={(e) => this.handleChange(e, 'primaryResidence', 0)}
+                    onChange={(e) =>
+                      this.handleChange(e, "primaryResidence", 0)
+                    }
                     placeholder="Asset Value"
                     className="text-black rounded-lg shadow-inner shadow-gray-400 p-2 w-[12vw] h-[5vh] box-border"
                     disabled={!isEditing}
@@ -845,7 +889,9 @@ class Profile extends React.Component {
                     type="number"
                     name="liabilityValue"
                     value={this.state.primaryResidence[0].liabilityValue}
-                    onChange={(e) => this.handleChange(e, 'primaryResidence', 0)}
+                    onChange={(e) =>
+                      this.handleChange(e, "primaryResidence", 0)
+                    }
                     placeholder="Liability Value"
                     className="text-black rounded-lg shadow-inner shadow-gray-400 p-2 w-[12vw] h-[5vh] box-border"
                     disabled={!isEditing}
@@ -854,7 +900,9 @@ class Profile extends React.Component {
                     type="text"
                     name="bankName"
                     value={this.state.primaryResidence[0].bankName}
-                    onChange={(e) => this.handleChange(e, 'primaryResidence', 0)}
+                    onChange={(e) =>
+                      this.handleChange(e, "primaryResidence", 0)
+                    }
                     placeholder="Bank Name"
                     className="text-black rounded-lg shadow-inner shadow-gray-400 p-2 w-[12vw] h-[5vh] box-border"
                     disabled={!isEditing}
@@ -862,16 +910,24 @@ class Profile extends React.Component {
                   <input
                     type="text"
                     name="householdContentsValue"
-                    value={this.state.primaryResidence[0].householdContentsValue}
-                    onChange={(e) => this.handleChange(e, 'primaryResidence', 0)}
+                    value={
+                      this.state.primaryResidence[0].householdContentsValue
+                    }
+                    onChange={(e) =>
+                      this.handleChange(e, "primaryResidence", 0)
+                    }
                     placeholder="Household Contents Value"
                     className="text-black rounded-lg shadow-inner shadow-gray-400 p-2 w-[12vw] h-[5vh] box-border"
                     disabled={!isEditing}
                   />
                   <select
                     name="benificiary_BequethedTo"
-                    value={this.state.primaryResidence[0].benificiary_BequethedTo}
-                    onChange={(e) => this.handleChange(e, 'primaryResidence', 0)}
+                    value={
+                      this.state.primaryResidence[0].benificiary_BequethedTo
+                    }
+                    onChange={(e) =>
+                      this.handleChange(e, "primaryResidence", 0)
+                    }
                     className="text-black rounded-lg shadow-inner shadow-gray-400 p-2 w-[12vw] h-[5vh] box-border"
                     disabled={!isEditing}
                   >
@@ -898,8 +954,19 @@ class Profile extends React.Component {
                 onClick={this.toggleMotorVehicles}
               >
                 Motor Vehicles
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className={`size-6 ${showMotorVehicles ? "rotate-180" : ""}`}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="white"
+                  className={`size-6 ${showMotorVehicles ? "rotate-180" : ""}`}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
                 </svg>
               </div>
               {showMotorVehicles && (
@@ -919,10 +986,20 @@ class Profile extends React.Component {
                     onClick={this.handleAddVehicle}
                     disabled={!isEditing}
                   >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
-
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="white"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
+                    </svg>
                   </button>
                 </>
               )}
@@ -934,8 +1011,19 @@ class Profile extends React.Component {
                 onClick={this.toggleProperties}
               >
                 Property
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className={`size-6 ${showProperties ? "rotate-180" : ""}`}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="white"
+                  className={`size-6 ${showProperties ? "rotate-180" : ""}`}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
                 </svg>
               </div>
               {showProperties && (
@@ -955,9 +1043,20 @@ class Profile extends React.Component {
                     onClick={this.handleAddProperty}
                     disabled={!isEditing}
                   >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="white"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
+                    </svg>
                   </button>
                 </>
               )}
@@ -969,8 +1068,19 @@ class Profile extends React.Component {
                 onClick={this.toggleCashAccounts}
               >
                 Cash
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className={`size-6 ${showCashAccounts ? "rotate-180" : ""}`}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="white"
+                  className={`size-6 ${showCashAccounts ? "rotate-180" : ""}`}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
                 </svg>
               </div>
               {showCashAccounts && (
@@ -990,9 +1100,20 @@ class Profile extends React.Component {
                     onClick={this.handleAddCash}
                     disabled={!isEditing}
                   >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="white"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
+                    </svg>
                   </button>
                 </>
               )}
@@ -1004,8 +1125,19 @@ class Profile extends React.Component {
                 onClick={this.toggleCompanies}
               >
                 Company Ownership
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className={`size-6 ${showCompanies ? "rotate-180" : ""}`}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="white"
+                  className={`size-6 ${showCompanies ? "rotate-180" : ""}`}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
                 </svg>
               </div>
               {showCompanies && (
@@ -1025,9 +1157,20 @@ class Profile extends React.Component {
                     onClick={this.handleAddCompany}
                     disabled={!isEditing}
                   >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="white"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
+                    </svg>
                   </button>
                 </>
               )}
@@ -1039,8 +1182,19 @@ class Profile extends React.Component {
                 onClick={this.toggleShortTermLoans}
               >
                 Short Term Loans
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className={`size-6 ${showShortTermLoans ? "rotate-180" : ""}`}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="white"
+                  className={`size-6 ${showShortTermLoans ? "rotate-180" : ""}`}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
                 </svg>
               </div>
               {showShortTermLoans && (
@@ -1060,9 +1214,20 @@ class Profile extends React.Component {
                     onClick={this.handleAddShortTermLoan}
                     disabled={!isEditing}
                   >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="white"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
+                    </svg>
                   </button>
                 </>
               )}
@@ -1074,8 +1239,19 @@ class Profile extends React.Component {
                 onClick={this.togglePersonalLoans}
               >
                 Personal Loans
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className={`size-6 ${showPersonalLoans ? "rotate-180" : ""}`}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="white"
+                  className={`size-6 ${showPersonalLoans ? "rotate-180" : ""}`}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
                 </svg>
               </div>
               {showPersonalLoans && (
@@ -1095,9 +1271,20 @@ class Profile extends React.Component {
                     onClick={this.handleAddPersonalLoan}
                     disabled={!isEditing}
                   >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="white"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
+                    </svg>
                   </button>
                 </>
               )}
@@ -1109,8 +1296,19 @@ class Profile extends React.Component {
                 onClick={this.toggleLifestyleExpenses}
               >
                 Lifestyle Expenses - Objective Monthly
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="white" className={`size-6 ${showLifestyleExpenses ? "rotate-180" : ""}`}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2"
+                  stroke="white"
+                  className={`size-6 ${showLifestyleExpenses ? "rotate-180" : ""}`}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                  />
                 </svg>
               </div>
               {showLifestyleExpenses && (
@@ -1130,9 +1328,20 @@ class Profile extends React.Component {
                     onClick={this.handleAddLifestyleExpense}
                     disabled={!isEditing}
                   >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="white" className="size-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                  </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="white"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
+                    </svg>
                   </button>
                 </>
               )}
