@@ -94,10 +94,10 @@ class Login extends React.Component {
             <div className="flex flex-col justify-start items-center box-border h-full w-full overflow-hidden">
             <div className="relative flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-full h-[80vh]">
                 <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
-                <div className="relative hidden flex-col justify-start items-center box-border lg:text-7xl xl:text-8xl text-white w-[50vw] h-5/6">
+                <div className="relative hidden 2xl:flex flex-col justify-start items-center box-border lg:text-7xl xl:text-8xl text-white w-[50vw] h-5/6">
                         Estate Liquidity Calculator
                 </div>
-                <div className="relative flex flex-col justify-center items-center box-border rounded-xl bg-white md:w-[35vw] h-5/6 p-1 md:p-8 w-screen mx-2">
+                <div className="relative flex flex-col justify-center items-center box-border rounded-xl bg-white 2xl:w-[35vw] h-5/6 p-1 md:p-8 w-screen mx-2">
                     <form className="h-full w-full flex flex-col justify-start items-center p-0" onSubmit={this.handleSubmit}>
                             <div className=" rounded-md w-full h-[15%] flex flex-start items-center justify-center text-4xl">
                                 Login
@@ -128,8 +128,8 @@ class Login extends React.Component {
                                 <NavLink to="/RegisterUser"className="hover:text-myYellow-100 hover:bg-none text-5xl md:text-full">Don't have an account? </NavLink>
                             </div>
 
-                            <div className=" w-full h-[20%] flex flex-col justify-center items-center text-5xl">
-                                <button type="submit" className="button">Login</button>
+                            <div className=" w-full h-[20%] flex flex-col justify-center items-center text-5xl ">
+                                <button type="submit" className="button w-fit md:w-[10vw] h-fit p">Login</button>
                             </div>
                     </form>
                 </div>
