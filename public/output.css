@@ -1071,6 +1071,10 @@ body {
   .sm\:w-screen{
     width: 100vw;
   }
+
+  .sm\:overflow-y-scroll{
+    overflow-y: scroll;
+  }
 }
 
 @media (min-width: 768px){
