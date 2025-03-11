@@ -730,6 +730,14 @@ video {
   width: 100%;
 }
 
+.w-\[95\%\]{
+  width: 95%;
+}
+
+.w-screen{
+  width: 100vw;
+}
+
 .min-w-\[350px\]{
   min-width: 350px;
 }
@@ -917,6 +925,11 @@ video {
 .text-4xl{
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+
+.text-5xl{
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .font-bold{
@@ -1164,6 +1177,18 @@ body {
 
   .md\:hidden{
     display: none;
+  }
+
+  .md\:w-\[90\%\]{
+    width: 90%;
+  }
+
+  .md\:w-\[35vw\]{
+    width: 35vw;
+  }
+
+  .md\:w-full{
+    width: 100%;
   }
 
   .md\:p-8{
