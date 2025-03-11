@@ -65,7 +65,7 @@ class Login extends React.Component {
                                             value={this.state.email}
                                             onChange={this.handleChange}
                                             placeholder="Email"
-                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2  focus:outline-myBlue-100 invalid:outline-red-600 min-h-9 sm:text-lg"
+                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2  focus:outline-myBlue-100 invalid:outline-red-600 min-h-9 sm:text-5xl box-border"
                                             required
                                         />
 
