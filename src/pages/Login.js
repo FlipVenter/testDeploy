@@ -94,7 +94,7 @@ class Login extends React.Component {
             <div className="flex flex-col justify-start items-center box-border h-full w-full overflow-hidden">
             <div className="relative flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-full h-[80vh]">
                 <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
-                <div className="relative hidden md:flex flex-col justify-start items-center box-border lg:text-7xl xl:text-8xl text-white w-[50vw] h-5/6">
+                <div className="relative hidden flex-col justify-start items-center box-border lg:text-7xl xl:text-8xl text-white w-[50vw] h-5/6">
                         Estate Liquidity Calculator
                 </div>
                 <div className="relative flex flex-col justify-center items-center box-border rounded-xl bg-white w-[90%] sm:w-[35vw] h-5/6 p-1 md:p-8 min-w-[350px]">
