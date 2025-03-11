@@ -65,7 +65,7 @@ class Login extends React.Component {
                                             value={this.state.email}
                                             onChange={this.handleChange}
                                             placeholder="Email"
-                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2  focus:outline-myBlue-100 invalid:outline-red-600 min-h-9"
+                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2  focus:outline-myBlue-100 invalid:outline-red-600 min-h-9 sm:text-lg"
                                             required
                                         />
 
@@ -75,7 +75,7 @@ class Login extends React.Component {
                                             onChange={this.handleChange}
                                             placeholder="Password"
                                             type="password"
-                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2 focus:outline-myBlue-100 invalid:outline-red-500 min-h-9"
+                                            className="w-full h-[20%] border-none bg-gray-200 rounded-md p-2 focus:outline-myBlue-100 invalid:outline-red-500 min-h-9 sm:text-lg"
                                             required
                                         />
                                 </div>
@@ -85,7 +85,7 @@ class Login extends React.Component {
                                 </div>
 
                                 <div className=" w-full h-[20%] flex flex-col justify-center items-center">
-                                    <button type="submit" className="button min-w-fit min-h-fit">Login</button>
+                                    <button type="submit" className="button min-w-fit min-h-fit sm:text-lg">Login</button>
                                 </div>
                         </form>
                     </div>

@@ -1089,6 +1089,11 @@ body {
   .sm\:overflow-y-scroll{
     overflow-y: scroll;
   }
+
+  .sm\:text-lg{
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
 }
 
 @media (min-width: 768px){
