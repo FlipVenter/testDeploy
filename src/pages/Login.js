@@ -48,7 +48,7 @@ class Login extends React.Component {
     render() {
         return (
             <div className="flex flex-col justify-start items-center box-border h-[90vh] w-full">
-                <div className="relative hidden sm:flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-full h-[80vh]">
+                <div className="relative testhidden sm:flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-full h-[80vh]">
                     <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
                     <div className="relative sm:text-5xl flex flex-col justify-start items-center box-border lg:text-7xl xl:text-8xl text-white w-[50vw] h-5/6 md:flex ">
                             Estate Liquidity Calculator
@@ -92,7 +92,7 @@ class Login extends React.Component {
                     </div>
                 </div>
                 {/* mobile view */}
-                <div className="sm:hidden relative flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-screen h-[80dvh] flow-hidden">
+                <div className="sm:testhidden relative flex flex-row justify-center items-center gap-[3vw] box-border bg-myBlue-300 w-screen h-[80dvh] flow-hidden">
                     <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${backgroundImage})` }}></div>
                     <form className="rounded-lg relative bg-white h-[80%] w-[95%] flex flex-col justify-start items-center py-5 box-border" onSubmit={this.handleSubmit}>
                             <div className=" rounded-md w-full h-[15%] flex flex-start items-center justify-center text-3xl">
