@@ -16,6 +16,11 @@ module.exports = {
           100: "#FFD329",
         },
       },
+      screens: {
+        '3xs': '250px',
+        '2xs': '375px',
+        'xs': '475px',
+      }
     },
   },
   plugins: [
